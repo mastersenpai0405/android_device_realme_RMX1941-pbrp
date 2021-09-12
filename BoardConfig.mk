@@ -34,9 +34,6 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
-# Build
-BUILD_BROKEN_DUP_RULES := true
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := mt6765
 TARGET_NO_BOOTLOADER := true
@@ -122,7 +119,6 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
 # TWRP Configuration
 TW_THEME := portrait_hdpi
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_DEVICE_VERSION := @donsenpai05
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 560
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
@@ -133,8 +129,6 @@ TW_EXTRA_LANGUAGES := true
 TW_OZIP_DECRYPT_KEY := 0000
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_SCREEN_BLANK_ON_BOOT := true
-TW_Y_OFFSET := 52
-TW_H_OFFSET := -52
 TW_INCLUDE_LOGICAL := oppo_product oppo_engineering common_preload
 
 # Hack: prevent anti rollback
