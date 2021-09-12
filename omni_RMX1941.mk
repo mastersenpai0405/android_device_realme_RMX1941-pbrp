@@ -33,20 +33,6 @@ PRODUCT_MODEL := Realme C2
 PRODUCT_MANUFACTURER := realme
 PRODUCT_RELEASE_NAME := Realme C2
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=RMX1941 \
-    BUILD_PRODUCT=RMX1941 \
-    TARGET_DEVICE=RMX1941
-
 # HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31
-
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
-    ro.bootimage.build.date.utc \
-    ro.build.date.utc
-
-# Dimen
-TARGET_SCREEN_HEIGHT := 1560
-TARGET_SCREEN_WIDTH := 720
-TW_THEME := portrait_hdpi
