@@ -3,17 +3,6 @@ TWRP Device Tree for Realme C2
 
 The Realme C2 is a budget range smartphone from Realme, announced in April 2019.
 
-## Status
-
-**Working**:
-
-1. MTP
-2. Backup and Restore
-3. Flash GSI
-4. Screenshots
-5. Decryption
-6. OTG
-
 ## Device specifications
 
 Basic   | Spec Sheet

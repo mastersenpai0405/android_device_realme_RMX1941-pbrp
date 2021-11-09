@@ -1,5 +1,9 @@
-import /init.recovery.trustonic.rc
-
+on init
+    export PATH /sbin:/system/bin
+    export ANDROID_ROOT /system_root
+    export ANDROID_DATA /data
+    export LD_LIBRARY_PATH /sbin:/vendor/lib64:/vendor/lib64/hw
+    
 on fs
     install_keyring
     setprop crypto.ready 1
@@ -14,10 +18,29 @@ service keystore_auth /sbin/keystore_auth
 
 service keystore /sbin/keystore /tmp/misc/keystore
     user root
-    group root drmrpc readproc
+    group root drmrpc readproc log
     disabled
     seclabel u:r:recovery:s0
 
+# Start Daemon (Registry directories should already be present)
+service mobicore /sbin/mcDriverDaemon --P1 /sbin/mcRegistry \
+	-r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/05120000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/070b0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/020b0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/05070000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/030b0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/030c0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/07070000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/07060000000000000000000000007169.drbin \
+	-r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
+	-r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin \
+	-r /vendor/app/mcRegistry/06090000000000000000000000000000.drbin
+    #service mobicore /sbin/mcDriverDaemon --P1 /sbin/mcRegistry -r 020f0000000000000000000000000000.drbin -r 07170000000000000000000000000000.drbin
+    user root
+    group root
+    seclabel u:r:recovery:s0
+    
 #Add for OPPO FBE
 service hal_cryptoeng_oppo /sbin/vendor.oppo.hardware.cryptoeng@1.0-service
     user root
@@ -58,7 +81,7 @@ on property:ro.crypto.state=unencrypted
     stop servicemanager
     stop hwservicemanager
 
-on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
+on property:twrp.decrypt.done=true
     stop mobicore
     stop hal_cryptoeng_oppo
     stop keymaster-3-0
