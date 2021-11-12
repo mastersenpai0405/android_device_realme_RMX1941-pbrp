@@ -1,7 +1,5 @@
 on init
-    export PATH /sbin:/system/bin
     export ANDROID_ROOT /system_root
-    export ANDROID_DATA /data
     export LD_LIBRARY_PATH /sbin:/vendor/lib64:/vendor/lib64/hw
     
 on fs
@@ -23,7 +21,7 @@ service keystore /sbin/keystore /tmp/misc/keystore
     seclabel u:r:recovery:s0
 
 # Start Daemon (Registry directories should already be present)
-service mobicore /sbin/mcDriverDaemon --P1 /sbin/mcRegistry \
+service mobicore /sbin/mcDriverDaemon --P1 /vendor/app/mcRegistry \
 	-r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/05120000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/070b0000000000000000000000000000.drbin \
